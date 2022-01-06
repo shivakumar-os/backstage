@@ -19,7 +19,6 @@ import { FetchApi } from '@backstage/core-plugin-api';
 import { FieldProps } from '@rjsf/core';
 import { FieldValidation } from '@rjsf/core';
 import { IconButton } from '@material-ui/core';
-import { IdentityApi } from '@backstage/core-plugin-api';
 import { JsonObject } from '@backstage/types';
 import { JSONSchema } from '@backstage/catalog-model';
 import { Observable } from '@backstage/types';
@@ -174,8 +173,6 @@ export interface ScaffolderApi {
     templateName: EntityName,
   ): Promise<TemplateParameterSchema>;
   // Warning: (ae-forgotten-export) The symbol "ListActionsResponse" needs to be exported by the entry point index.d.ts
-  //
-  // (undocumented)
   listActions(): Promise<ListActionsResponse>;
   scaffold(templateName: string, values: Record<string, any>): Promise<string>;
   // Warning: (ae-forgotten-export) The symbol "LogEvent" needs to be exported by the entry point index.d.ts
@@ -191,8 +188,7 @@ export const scaffolderApiRef: ApiRef<ScaffolderApi>;
 export class ScaffolderClient implements ScaffolderApi {
   constructor(options: {
     discoveryApi: DiscoveryApi;
-    identityApi: IdentityApi;
-    fetchApi?: FetchApi;
+    fetchApi: FetchApi;
     scmIntegrationsApi: ScmIntegrationRegistry;
     useLongPollingLogs?: boolean;
   });
@@ -212,6 +208,7 @@ export class ScaffolderClient implements ScaffolderApi {
   ): Promise<TemplateParameterSchema>;
   // (undocumented)
   listActions(): Promise<ListActionsResponse>;
+  // (undocumented)
   scaffold(templateName: string, values: Record<string, any>): Promise<string>;
   // (undocumented)
   streamLogs(options: { taskId: string; after?: number }): Observable<LogEvent>;
