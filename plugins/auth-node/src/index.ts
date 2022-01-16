@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-export * from './IdentityClient';
+/**
+ * Shared facilities of `@backstage/plugin-auth-backend`.
+ *
+ * @packageDocumentation
+ */
+
+export * from './identity';
 export type {
   AuthResponse,
   BackstageIdentity,

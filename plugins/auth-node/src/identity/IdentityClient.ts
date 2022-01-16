@@ -26,6 +26,7 @@ const CLOCK_MARGIN_S = 10;
  * A identity client to interact with auth-backend
  * and authenticate backstage identity tokens
  *
+ * @public
  * @experimental This is not a stable API yet
  */
 export class IdentityClient {

@@ -15,3 +15,10 @@
  */
 
 export { IdentityClient } from './IdentityClient';
+export type {
+  AnyJWK,
+  KeyStore,
+  StoredKey,
+  TokenIssuer,
+  TokenParams,
+} from './types';

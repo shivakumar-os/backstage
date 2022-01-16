@@ -33,12 +33,11 @@ import {
   SignInResolver,
 } from '../types';
 import { postMessageResponse } from '../../lib/flow';
-import { TokenIssuer } from '../../identity/types';
+import { AuthResponse, TokenIssuer } from '@backstage/plugin-auth-node';
 import { isError } from '@backstage/errors';
 import { CatalogIdentityClient } from '../../lib/catalog';
 import { Logger } from 'winston';
 import { prepareBackstageIdentityResponse } from '../prepareBackstageIdentityResponse';
-import { AuthResponse } from '@backstage/plugin-auth-node';
 
 /** @public */
 export type SamlAuthResult = {

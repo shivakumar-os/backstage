@@ -44,7 +44,7 @@ import {
   OAuthResponse,
 } from '../../lib/oauth';
 import { CatalogIdentityClient } from '../../lib/catalog';
-import { TokenIssuer } from '../../identity';
+import { TokenIssuer } from '@backstage/plugin-auth-node';
 
 type PrivateInfo = {
   refreshToken?: string;

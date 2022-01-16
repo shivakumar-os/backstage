@@ -26,8 +26,8 @@ function parseJwtPayload(token: string) {
 
 /**
  * Parses a Backstage-issued token and decorates the
- * {@link BackstageIdentityResponse} with identity information sourced from the
- * token.
+ * {@link @backstage/plugin-auth-node#BackstageIdentityResponse} with identity
+ * information sourced from the token.
  *
  * @public
  */

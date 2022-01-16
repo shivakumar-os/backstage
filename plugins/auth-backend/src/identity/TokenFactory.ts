@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
-import { TokenIssuer, TokenParams, KeyStore, AnyJWK } from './types';
+import {
+  TokenIssuer,
+  TokenParams,
+  KeyStore,
+  AnyJWK,
+} from '@backstage/plugin-auth-node';
 import { JSONWebKey, JWK, JWS } from 'jose';
 import { Logger } from 'winston';
 import { v4 as uuid } from 'uuid';

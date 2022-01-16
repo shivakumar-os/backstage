@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { KeyStore, AnyJWK, StoredKey } from './types';
+import { KeyStore, AnyJWK, StoredKey } from '@backstage/plugin-auth-node';
 import { DateTime } from 'luxon';
 
 export class MemoryKeyStore implements KeyStore {

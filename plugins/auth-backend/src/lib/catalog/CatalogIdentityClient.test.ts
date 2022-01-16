@@ -20,7 +20,7 @@ import {
   UserEntity,
   UserEntityV1alpha1,
 } from '@backstage/catalog-model';
-import { TokenIssuer } from '../../identity';
+import { TokenIssuer } from '@backstage/plugin-auth-node';
 import { CatalogIdentityClient } from './CatalogIdentityClient';
 
 describe('CatalogIdentityClient', () => {

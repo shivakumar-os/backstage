@@ -23,7 +23,7 @@ import { Config } from '@backstage/config';
 import { DatabaseKeyStore } from './DatabaseKeyStore';
 import { MemoryKeyStore } from './MemoryKeyStore';
 import { FirestoreKeyStore } from './FirestoreKeyStore';
-import { KeyStore } from './types';
+import { KeyStore } from '@backstage/plugin-auth-node';
 
 type Options = {
   logger?: Logger;

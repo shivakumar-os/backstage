@@ -20,10 +20,10 @@ import { Config } from '@backstage/config';
 import {
   BackstageSignInResult,
   ProfileInfo,
+  TokenIssuer,
 } from '@backstage/plugin-auth-node';
 import express from 'express';
 import { Logger } from 'winston';
-import { TokenIssuer } from '../identity/types';
 import { OAuthStartRequest } from '../lib/oauth/types';
 import { CatalogIdentityClient } from '../lib/catalog';
 

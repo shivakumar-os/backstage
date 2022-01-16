@@ -29,6 +29,7 @@ import {
 import {
   BackstageIdentityResponse,
   BackstageSignInResult,
+  TokenIssuer,
 } from '@backstage/plugin-auth-node';
 import {
   AuthenticationError,
@@ -36,7 +37,6 @@ import {
   isError,
   NotAllowedError,
 } from '@backstage/errors';
-import { TokenIssuer } from '../../identity/types';
 import { readState, verifyNonce } from './helpers';
 import { postMessageResponse, ensuresXRequestedWith } from '../flow';
 import {

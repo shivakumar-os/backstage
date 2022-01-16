@@ -18,15 +18,15 @@ import {
   getVoidLogger,
   PluginEndpointDiscovery,
 } from '@backstage/backend-common';
-import {
-  KeyStore,
-  MemoryKeyStore,
-  TokenFactory,
-} from '@backstage/plugin-auth-backend';
+// import {
+//   MemoryKeyStore,
+//   TokenFactory,
+// } from '@backstage/plugin-auth-backend';
 import { JSONWebKey, JWT } from 'jose';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { IdentityClient } from './IdentityClient';
+import { KeyStore, TokenIssuer } from './types';
 
 const logger = getVoidLogger();
 
@@ -50,7 +50,7 @@ const discovery: PluginEndpointDiscovery = {
 
 describe('IdentityClient', () => {
   let client: IdentityClient;
-  let factory: TokenFactory;
+  let factory: TokenIssuer;
   let keyStore: KeyStore;
   const keyDurationSeconds = 5;
 
@@ -227,7 +227,7 @@ describe('IdentityClient', () => {
       expect(token).toEqual('token');
     });
 
-    it('should return Bearer token despite unconventionial case', async () => {
+    it('should return Bearer token despite unconventional case', async () => {
       const token = IdentityClient.getBearerToken('bEARER token');
       expect(token).toEqual('token');
     });

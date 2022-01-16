@@ -20,4 +20,3 @@ export { DatabaseKeyStore } from './DatabaseKeyStore';
 export { MemoryKeyStore } from './MemoryKeyStore';
 export { FirestoreKeyStore } from './FirestoreKeyStore';
 export { KeyStores } from './KeyStores';
-export type { KeyStore, TokenIssuer, TokenParams } from './types';
