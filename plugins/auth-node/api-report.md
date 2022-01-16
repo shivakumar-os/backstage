@@ -7,8 +7,6 @@ import { Entity } from '@backstage/catalog-model';
 import { JSONWebKey } from 'jose';
 import { PluginEndpointDiscovery } from '@backstage/backend-common';
 
-// Warning: (ae-missing-release-tag) "AnyJWK" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export interface AnyJWK extends Record<string, string> {
   // (undocumented)
@@ -21,9 +19,7 @@ export interface AnyJWK extends Record<string, string> {
   use: 'sig';
 }
 
-// Warning: (ae-missing-release-tag) "AuthResponse" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
-// @public (undocumented)
+// @public
 export type AuthResponse<TProviderInfo> = {
   providerInfo: TProviderInfo;
   profile: ProfileInfo;
@@ -66,8 +62,6 @@ export class IdentityClient {
   }>;
 }
 
-// Warning: (ae-missing-release-tag) "KeyStore" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export type KeyStore = {
   addKey(key: AnyJWK): Promise<void>;
@@ -84,16 +78,12 @@ export type ProfileInfo = {
   picture?: string;
 };
 
-// Warning: (ae-missing-release-tag) "StoredKey" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export type StoredKey = {
   key: AnyJWK;
   createdAt: Date;
 };
 
-// Warning: (ae-missing-release-tag) "TokenIssuer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export type TokenIssuer = {
   issueToken(params: TokenParams): Promise<string>;
@@ -102,8 +92,6 @@ export type TokenIssuer = {
   }>;
 };
 
-// Warning: (ae-missing-release-tag) "TokenParams" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
-//
 // @public
 export type TokenParams = {
   claims: {

@@ -87,6 +87,11 @@ export interface BackstageIdentityResponse extends BackstageSignInResult {
   identity: BackstageUserIdentity;
 }
 
+/**
+ * The response shape of an auth attempt.
+ *
+ * @public
+ */
 export type AuthResponse<TProviderInfo> = {
   providerInfo: TProviderInfo;
   profile: ProfileInfo;
