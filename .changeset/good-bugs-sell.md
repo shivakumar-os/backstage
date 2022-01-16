@@ -1,5 +1,4 @@
 ---
-'@backstage/plugin-auth-backend': patch
 '@backstage/plugin-permission-backend': patch
 '@backstage/plugin-permission-node': patch
 ---

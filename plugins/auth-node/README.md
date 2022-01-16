@@ -1,3 +1,3 @@
-# auth-node
+# Auth Node
 
-Common backend functionality and types for `@backstage/auth-backend`.
+Common backend functionality and types for `@backstage/plugin-auth-backend`.
