@@ -31,7 +31,6 @@ import {
   AuthProviderFactory,
   AuthHandler,
   SignInResolver,
-  AuthResponse,
 } from '../types';
 import { postMessageResponse } from '../../lib/flow';
 import { TokenIssuer } from '../../identity/types';
@@ -39,6 +38,7 @@ import { isError } from '@backstage/errors';
 import { CatalogIdentityClient } from '../../lib/catalog';
 import { Logger } from 'winston';
 import { prepareBackstageIdentityResponse } from '../prepareBackstageIdentityResponse';
+import { AuthResponse } from '@backstage/plugin-auth-node';
 
 /** @public */
 export type SamlAuthResult = {

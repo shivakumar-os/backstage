@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-import { JWT, JSONWebKey } from 'jose';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
 import {
   getVoidLogger,
   PluginEndpointDiscovery,
 } from '@backstage/backend-common';
+import {
+  KeyStore,
+  MemoryKeyStore,
+  TokenFactory,
+} from '@backstage/plugin-auth-backend';
+import { JSONWebKey, JWT } from 'jose';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 import { IdentityClient } from './IdentityClient';
-import { MemoryKeyStore } from './MemoryKeyStore';
-import { TokenFactory } from './TokenFactory';
-import { KeyStore } from './types';
 
 const logger = getVoidLogger();
 

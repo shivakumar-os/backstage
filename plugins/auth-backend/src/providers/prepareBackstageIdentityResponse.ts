@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { BackstageIdentityResponse, BackstageSignInResult } from './types';
+import {
+  BackstageIdentityResponse,
+  BackstageSignInResult,
+} from '@backstage/plugin-auth-node';
 
 function parseJwtPayload(token: string) {
   const [_header, payload, _signature] = token.split('.');

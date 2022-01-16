@@ -25,9 +25,11 @@ import {
 import {
   AuthProviderRouteHandlers,
   AuthProviderConfig,
+} from '../../providers/types';
+import {
   BackstageIdentityResponse,
   BackstageSignInResult,
-} from '../../providers/types';
+} from '@backstage/plugin-auth-node';
 import {
   AuthenticationError,
   InputError,

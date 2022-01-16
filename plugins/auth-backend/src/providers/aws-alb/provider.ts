@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
+import { AuthResponse } from '@backstage/plugin-auth-node';
 import {
   AuthHandler,
   AuthProviderFactory,
   AuthProviderRouteHandlers,
-  AuthResponse,
   SignInResolver,
 } from '../types';
 import express from 'express';
