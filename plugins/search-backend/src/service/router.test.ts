@@ -15,6 +15,8 @@
  */
 
 import { getVoidLogger } from '@backstage/backend-common';
+import { ConfigReader } from '@backstage/config';
+import { PermissionAuthorizer } from '@backstage/plugin-permission-common';
 import {
   IndexBuilder,
   LunrSearchEngine,
@@ -24,6 +26,12 @@ import express from 'express';
 import request from 'supertest';
 
 import { createRouter } from './router';
+
+const mockPermissionAuthorizer: PermissionAuthorizer = {
+  authorize: () => {
+    throw new Error('Not implemented');
+  },
+};
 
 describe('createRouter', () => {
   let app: express.Express;
@@ -36,6 +44,9 @@ describe('createRouter', () => {
 
     const router = await createRouter({
       engine: indexBuilder.getSearchEngine(),
+      types: indexBuilder.getDocumentTypes(),
+      config: new ConfigReader({ permissions: { enabled: false } }),
+      permissions: mockPermissionAuthorizer,
       logger,
     });
     app = express().use(router);
@@ -68,6 +79,9 @@ describe('createRouter', () => {
 
         const router = await createRouter({
           engine: indexBuilder.getSearchEngine(),
+          types: indexBuilder.getDocumentTypes(),
+          config: new ConfigReader({ permissions: { enabled: false } }),
+          permissions: mockPermissionAuthorizer,
           logger,
         });
         app = express().use(router);

@@ -17,11 +17,21 @@
 import express from 'express';
 import Router from 'express-promise-router';
 import { Logger } from 'winston';
+import { Config } from '@backstage/config';
+import { IdentityClient } from '@backstage/plugin-auth-backend';
+import { PermissionAuthorizer } from '@backstage/plugin-permission-common';
 import { SearchQuery, SearchResultSet } from '@backstage/search-common';
-import { SearchEngine } from '@backstage/plugin-search-backend-node';
+import {
+  DocumentTypeInfo,
+  SearchEngine,
+} from '@backstage/plugin-search-backend-node';
+import { AuthorizedSearchEngine } from './AuthorizedSearchEngine';
 
 export type RouterOptions = {
   engine: SearchEngine;
+  types: Record<string, DocumentTypeInfo>;
+  permissions: PermissionAuthorizer;
+  config: Config;
   logger: Logger;
 };
 
@@ -30,7 +40,11 @@ const allowedLocationProtocols = ['http:', 'https:'];
 export async function createRouter(
   options: RouterOptions,
 ): Promise<express.Router> {
-  const { engine, logger } = options;
+  const { engine: inputEngine, types, permissions, config, logger } = options;
+
+  const engine = config.getOptionalBoolean('permissions.enabled')
+    ? new AuthorizedSearchEngine(inputEngine, types, permissions, config)
+    : inputEngine;
 
   const filterResultSet = ({ results, ...resultSet }: SearchResultSet) => ({
     ...resultSet,
@@ -54,17 +68,19 @@ export async function createRouter(
       req: express.Request<any, unknown, unknown, SearchQuery>,
       res: express.Response<SearchResultSet>,
     ) => {
-      const { term, filters = {}, types, pageCursor } = req.query;
       logger.info(
-        `Search request received: term="${term}", filters=${JSON.stringify(
-          filters,
-        )}, types=${types ? types.join(',') : ''}, pageCursor=${
-          pageCursor ?? ''
-        }`,
+        `Search request received: term="${
+          req.query.term
+        }", filters=${JSON.stringify(req.query.filters)}, types=${
+          req.query.types ? req.query.types.join(',') : ''
+        }, pageCursor=${req.query.pageCursor ?? ''}`,
       );
 
+      const token = IdentityClient.getBearerToken(req.header('authorization'));
+
       try {
-        const resultSet = await engine?.query(req.query);
+        const resultSet = await engine?.query(req.query, { token });
+
         res.send(filterResultSet(resultSet));
       } catch (err) {
         throw new Error(
