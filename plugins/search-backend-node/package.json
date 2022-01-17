@@ -20,6 +20,7 @@
     "clean": "backstage-cli clean"
   },
   "dependencies": {
+    "@backstage/plugin-permission-common": "^0.3.1",
     "@backstage/search-common": "^0.2.1",
     "winston": "^3.2.1",
     "lunr": "^2.3.9",
