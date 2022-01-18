@@ -1,5 +1,28 @@
 # @backstage/cli
 
+## 0.11.1-next.0
+
+### Patch Changes
+
+- 6e34e2cfbf: Introduce `--deprecated` option to `config:check` to log all deprecated app configuration properties
+
+  ```sh
+  $ yarn backstage-cli config:check --lax --deprecated
+  config:check --lax --deprecated
+  Loaded config from app-config.yaml
+  The configuration key 'catalog.processors.githubOrg' of app-config.yaml is deprecated and may be removed soon. Configure a GitHub integration instead.
+  ```
+
+- 2a42d573d2: Introduced a new `--experimental-type-build` option to the various package build commands. This option switches the type definition build to be executed using API Extractor rather than a `rollup` plugin. In order for this experimental switch to work, you must also have `@microsoft/api-extractor` installed within your project, as it is an optional peer dependency.
+
+  The biggest difference between the existing mode and the experimental one is that rather than just building a single `dist/index.d.ts` file, API Extractor will output `index.d.ts`, `index.beta.d.ts`, and `index.alpha.d.ts`, all in the `dist` directory. Each of these files will have exports from more unstable release stages stripped, meaning that `index.d.ts` will omit all exports marked with `@alpha` or `@beta`, while `index.beta.d.ts` will omit all exports marked with `@alpha`.
+
+  In addition, the `prepack` command now has support for `alphaTypes` and `betaTypes` fields in the `publishConfig` of `package.json`. These optional fields can be pointed to `dist/types.alpha.d.ts` and `dist/types.beta.d.ts` respectively, which will cause `<name>/alpha` and `<name>/beta` entry points to be generated for the package. See the [`@backstage/catalog-model`](https://github.com/backstage/backstage/blob/master/packages/catalog-model/package.json) package for an example of how this can be used in practice.
+
+- Updated dependencies
+  - @backstage/config@0.1.13-next.0
+  - @backstage/config-loader@0.9.3-next.0
+
 ## 0.11.0
 
 ### Minor Changes
